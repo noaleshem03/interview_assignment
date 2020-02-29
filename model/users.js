@@ -52,7 +52,6 @@ module.exports = {
 
     getUsersByAge: async function(age) {
         console.log(`getUsersByAge called with age: ${age}`);
-        console.log(calc_age("24/9/1957"));
         return age_to_user[age];
     },
 
@@ -74,7 +73,6 @@ module.exports = {
         let name_arr = id_to_user[id].Name.split(" ");
         let first = name_arr[0].substring(0, 3).toUpperCase();
         let last = name_arr[1].substring(0, 3).toUpperCase();
-
         country_to_user[country] = country_to_user[country].filter(x => x.Id !== id);
         age_to_user[age] = age_to_user[age].filter(x => x.Id !== id);
         name_to_user[first] = name_to_user[first].filter(x => x.Id !== id);
