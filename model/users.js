@@ -5,7 +5,6 @@ const names_trie = trie([]);
 const id_to_user = {};
 const name_to_user = {};
 const country_to_user = {};
-const age_to_user = {};
 const dob_to_user = {};
 csv().fromFile(csvFilePath).then((jsonObj)=>{
     jsonObj.map(function(item){
