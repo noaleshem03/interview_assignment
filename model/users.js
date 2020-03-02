@@ -46,25 +46,25 @@ module.exports = {
 
     getUsersByAge: async function(age) {
         console.log(`getUsersByAge called with age: ${age}`);
-        //low_range is the lowest birth date for user to be *age* years old
-        let low_range = new Date();
-        low_range.setFullYear(low_range.getFullYear() - age - 1);
-        low_range.setDate(low_range.getDate() + 1);
+        //low is the lowest birth date for user to be *age* years old
+        let low = new Date();
+        low.setFullYear(low.getFullYear() - age - 1);
+        low.setDate(low.getDate() + 1);
 
-        //high_range is the highest birth date for user to be *age* years old
-        let high_range = new Date();
-        high_range.setFullYear(high_range.getFullYear() - age);
+        //high is the highest birth date for user to be *age* years old
+        let high = new Date();
+        high.setFullYear(high.getFullYear() - age);
+        
         let res = [];
-
         //iterate all birth dates that user can have to be *age* years old 
-        while (low_range <= high_range){
-            let year = low_range.getFullYear().toString();
-            let month = (low_range.getMonth() + 1).toString();
-            let day = low_range.getDate().toString();
+        while (low <= high){
+            let year = low.getFullYear().toString();
+            let month = (low.getMonth() + 1).toString();
+            let day = low.getDate().toString();
             let dob = day + "/" + month + "/" + year;
             //concat all users with this DOB
             res = res.concat(dob_to_user[dob]);
-            low_range.setDate(low_range.getDate() + 1);
+            low.setDate(low.getDate() + 1);
         }
         return res;
     },
@@ -81,7 +81,7 @@ module.exports = {
         let names_arr = names_trie.getPrefix(name);
         let res = [];
         for (let i=0; i<names_arr.length; i++){
-            //concat all users with that name
+            //concat all users with that name (first/last)
             res = res.concat(name_to_user[names_arr[i]]);
         }
         return res;
